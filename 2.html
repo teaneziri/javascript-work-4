@@ -39,26 +39,27 @@
     const combineBtn=document.getElementById('combineBtn')
     const output=document.getElementById('output');
 
+   function testTextarea(text){
+    if(!text || text.trim()==="") return []
+    return text.split(",").map(item=>item.trim())
+   }
 
-    function lists(list1,list2){
-        const combined=[...list1,...list2];
-        return combined
+    function lists(...lists){
+        return [].concat(...lists);
+    
     }
     
       combineBtn.addEventListener('click', function() {
-    // Marrim vlerat nga textarea-t
-    const arr1 = list1.value
-      ? list1.value.split(',').map(item => item.trim())
-      : [];
-    const arr2 = list2.value
-      ? list2.value.split(',').map(item => item.trim())
-      : [];
+    
+    const arr1 = testTextarea(list1.value);
+    const arr2=testTextarea(list2.value)
 
-    // Thërrasim funksionin që i bashkon
+    
     const combinedResult = lists(arr1, arr2);
 
-    // Shfaqim rezultatin në faqe
-    output.textContent = `Combined: [${combinedResult.join(', ')}]`;
+    const uniqueRes=[...new Set(combinedResult)]
+    
+    output.textContent = `Combined: [${uniqueRes.join(', ')}]`;
       })
   
   </script>
