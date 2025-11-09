@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 2 — Combine Lists Into One</title>
+</head>
+<body>
+  <h2>✨ Task 2 — Combine Two Lists</h2>
+  <p>Enter two lists of words separated by commas and click "Combine".</p>
+
+  <textarea id="list1" placeholder="List 1: e.g. apple, banana, kiwi"></textarea>
+  <br><br>
+  <textarea id="list2" placeholder="List 2: e.g. orange, lemon, kiwi"></textarea>
+  <br><br>
+  <button id="combineBtn">Combine</button>
+
+  <p id="output"></p>
+
+  <script>
+    /*
+      🎯 TASK:
+      Build a function that combines two or more lists into one.
+      
+      Acceptance Criteria:
+      - Combine all items from both lists and display them in #output.
+      - Duplicates can be allowed OR removed (bonus).
+      - Example: List1 = [a, b, c], List2 = [c, d] → Combined = [a, b, c, d]
+      - The output should update when "Combine" is clicked.
+
+      🔍 You need to think:
+      - How to combine arrays together in JavaScript?
+      - Should you modify the existing lists or create a new one?
+    */
+
+    // TODO: Write your code below 👇
+
+    const list1=document.getElementById('list1')
+    const list2=document.getElementById('list2')
+    const combineBtn=document.getElementById('combineBtn')
+    const output=document.getElementById('output');
+
+
+    function lists(list1,list2){
+        const combined=[...list1,...list2];
+        return combined
+    }
+    
+      combineBtn.addEventListener('click', function() {
+    // Marrim vlerat nga textarea-t
+    const arr1 = list1.value
+      ? list1.value.split(',').map(item => item.trim())
+      : [];
+    const arr2 = list2.value
+      ? list2.value.split(',').map(item => item.trim())
+      : [];
+
+    // Thërrasim funksionin që i bashkon
+    const combinedResult = lists(arr1, arr2);
+
+    // Shfaqim rezultatin në faqe
+    output.textContent = `Combined: [${combinedResult.join(', ')}]`;
+      })
+  
+  </script>
+</body>
+</html>
