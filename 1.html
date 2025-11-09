@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1 — Flexible Sum Calculator</title>
+</head>
+<body>
+  <h2>🧮 Task 1 — Flexible Sum Calculator</h2>
+  <p>Enter numbers separated by commas and click "Calculate".</p>
+  
+  <input type="text" id="numbersInput" placeholder="e.g. 2, 5, 10, 3">
+  <button id="calcBtn">Calculate</button>
+  <p id="result"></p>
+
+  <script>
+    /*
+      🎯 TASK:
+      Build a function that can sum *any number of numeric values* provided by the user.
+
+      Acceptance Criteria:
+      - The function should be flexible and accept any number of arguments.
+      - When "Calculate" is clicked, the result should show the total.
+      - Handle invalid or empty inputs gracefully.
+      - Example output: "The total is 20"
+      
+      🔍 You need to think:
+      - How can the function accept dynamic number of arguments?
+      - How can you pass values from input to that function?
+    */
+
+    // TODO: Write your code below 👇
+
+    const numberInput=document.getElementById('numbersInput');
+    const calcBtn=document.getElementById('calcBtn');
+    const result=document.getElementById('result')
+
+    function sumNumbers(...nums){
+        let total=0;
+        for(const num of nums){
+            total+=num;
+        }
+        return total
+    }
+
+  function getNumbersFromInput(input){
+    if(!input) return []
+
+    const arr=input.split(",")
+    const numbers=arr.map(function(item){
+        return Number(item.trim())
+    })
+
+    for(let num of numbers){
+        if(isNaN(num)) return null
+    }
+
+    return numbers
+}
+
+
+calcBtn.addEventListener('click', function(){
+    const numbers=getNumbersFromInput(numberInput.value)
+
+    if(numbers===null){
+        result.textContent="Please enter valid numbers"
+        return
+    }
+
+    const total=sumNumbers(...numbers)
+    result.textContent=`The total is: ${total}`
+})
+    
+  </script>
+</body>
+</html>
