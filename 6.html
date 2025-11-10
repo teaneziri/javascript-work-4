@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 6 — Object Destructuring: Random Employee Card</title>
+</head>
+<body>
+  <h2>👤 Task 6 — Object Destructuring: Random Employee Card</h2>
+  <p>Click the button to show a random employee profile.</p>
+
+  <button id="showEmployeeBtn">Show Employee</button>
+  <div id="card" style="border:1px solid #ddd; padding:10px; width:250px; margin-top:10px;"></div>
+
+  <script>
+    /*
+      🎯 TASK:
+      Use OBJECT DESTRUCTURING to extract employee data from an object.
+
+      Acceptance Criteria:
+      - You have an array of employees (already defined below)
+      - When "Show Employee" is clicked:
+          - Pick a random employee
+          - Extract their name, role, and department using destructuring
+          - Display the info inside #card as:
+              Name: ...
+              Role: ...
+              Department: ...
+      - Each click should show a different random employee
+
+      🔍 You need to think:
+      - How can you extract multiple properties from an object easily?
+      - What happens if you add more fields later (e.g. age, country)?
+    */
+
+    const employees = [
+      { name: "Eronit", role: "Frontend Developer", department: "Engineering" },
+      { name: "Arta", role: "Designer", department: "UI/UX" },
+      { name: "Blerim", role: "Backend Developer", department: "IT" },
+      { name: "Luan", role: "Project Manager", department: "Operations" },
+    ];
+
+    // TODO: Write your code below 👇
+
+    const btn=document.getElementById('showEmployeeBtn')
+    const card=document.getElementById("card")
+
+    function getRandomEmployee(){
+        const random=Math.floor(Math.random()* employees.length)
+        return employees[random]
+    }
+
+
+    function showEmployee(){
+        const employee=getRandomEmployee();
+
+        const {name,role,department}=employee;
+
+        card.innerHTML=`
+         <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Role:</strong> ${role}</p>
+      <p><strong>Department:</strong> ${department}</p>
+        `
+    }
+
+    btn.addEventListener('click',showEmployee)
+    
+  </script>
+</body>
+</html>
