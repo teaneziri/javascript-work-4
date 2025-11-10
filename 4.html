@@ -53,8 +53,11 @@
         const arrays=[...textareas].map(el=>parseScores(el.value))
 
         const mergedArrays=[].concat(...arrays)
+        const sum = mergedArrays.reduce((a, b) => a + b, 0);
+      const avg = mergedArrays.length ? (sum / mergedArrays.length).toFixed(1) : 0;
 
-       output.innerHTML=`Combined ${mergedArrays.join(',')}`
+       output.innerHTML=`Combined scores:[ ${mergedArrays.join(',')}] <br>
+        Average: ${avg}`
     })
     
   </script>
