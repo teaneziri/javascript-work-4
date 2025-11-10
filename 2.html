@@ -41,7 +41,7 @@
 
    function testTextarea(text){
     if(!text || text.trim()==="") return []
-    return text.split(",").map(item=>item.trim())
+    return text.split(",").map(item=>item.trim()).filter(item => item !== "")
    }
 
    
